@@ -1,19 +1,18 @@
 package ru.sfedu.opensv.model;
 
-import junit.framework.TestCase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.opencv.core.Mat;
+import org.junit.jupiter.api.Test;
 import org.opencv.imgproc.Imgproc;
 import ru.sfedu.opensv.ImageAPI;
-import ru.sfedu.opensv.ImageAPITest;
 
-public class ImageFiltrationAndMorphologicalTest extends TestCase {
+public class ImageFiltrationAndMorphologicalTest {
 
     public static String FIRST_IMAGE_NAME = "sample2.png";
     public static String SECOND_IMAGE_NAME = "sample4.png";
-    private static final Logger log = LogManager.getLogger(ImageAPITest.class);
+    private static final Logger log = LogManager.getLogger(ImageFiltrationAndMorphologicalTest.class);
 
+    @Test
     public void testFilter() {
         try {
             log.info("TEST - testFilter");
@@ -28,6 +27,7 @@ public class ImageFiltrationAndMorphologicalTest extends TestCase {
         }
     }
 
+    @Test
     public void testMorphology() {
         try {
             log.info("TEST - testMorphology");

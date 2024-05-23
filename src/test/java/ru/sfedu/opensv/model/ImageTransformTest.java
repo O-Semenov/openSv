@@ -1,23 +1,23 @@
 package ru.sfedu.opensv.model;
 
-import junit.framework.TestCase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Test;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Size;
 import ru.sfedu.opensv.ImageAPI;
-import ru.sfedu.opensv.ImageAPITest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImageTransformTest extends TestCase {
+public class ImageTransformTest {
 
     public static String FIRST_IMAGE_NAME = "sample2.png";
     public static String SECOND_IMAGE_NAME = "sample3.png";
-    private static final Logger log = LogManager.getLogger(ImageAPITest.class);
+    private static final Logger log = LogManager.getLogger(ImageTransformTest.class);
 
+    @Test
     public void testSobelAndLaplace() {
         try {
             log.info("TEST - testSobelAndLaplace");
@@ -34,6 +34,7 @@ public class ImageTransformTest extends TestCase {
         }
     }
 
+    @Test
     public void testFlipConcatRepeatResize() {
         try {
             log.info("TEST - testFlipConcatRepeatResize");
@@ -54,6 +55,7 @@ public class ImageTransformTest extends TestCase {
         }
     }
 
+    @Test
     public void testTurn() {
         try {
             log.info("TEST - testTurn");
@@ -68,6 +70,7 @@ public class ImageTransformTest extends TestCase {
         }
     }
 
+    @Test
     public void testShift() {
         try {
             log.info("TEST - testShift");
@@ -82,6 +85,7 @@ public class ImageTransformTest extends TestCase {
         }
     }
 
+    @Test
     public void testPerspective() {
         try {
             log.info("TEST - testPerspective");

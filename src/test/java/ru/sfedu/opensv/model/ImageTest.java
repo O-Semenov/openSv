@@ -1,18 +1,19 @@
 package ru.sfedu.opensv.model;
 
-import junit.framework.TestCase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Test;
 import org.opencv.core.Mat;
 import ru.sfedu.opensv.ImageAPI;
 import ru.sfedu.opensv.ImageAPITest;
 
 import java.io.IOException;
 
-public class ImageTest extends TestCase {
+public class ImageTest {
 
     private static final Logger log = LogManager.getLogger(ImageAPITest.class);
 
+    @Test
     public void testDropImageChannels() {
         try {
             log.info("TESTS Image");
