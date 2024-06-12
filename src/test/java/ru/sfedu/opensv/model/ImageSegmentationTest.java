@@ -3,15 +3,20 @@ package ru.sfedu.opensv.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import ru.sfedu.opensv.ImageAPI;
 
+import java.io.IOException;
+
 public class ImageSegmentationTest {
 
     public static String FIRST_IMAGE_NAME = "sample4.png";
     public static String SECOND_IMAGE_NAME = "sample5.png";
+    public static String THIRD_IMAGE_NAME = "sample6.png";
     private static final Logger log = LogManager.getLogger(ImageSegmentationTest.class);
 
     @Test
@@ -70,6 +75,24 @@ public class ImageSegmentationTest {
             int count = ImageSegmentation.defineRectangles(image, 138, 138);
             log.info(count + " rectangles found with height - " + 138 + " width - " + 138);
             Image.writeImage("lab_5_define_result.png", image);
+        } catch (Exception e) {
+            log.error("Exception thrown: {}", e.getMessage());
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3})
+    public void testObjectsEdgeIdentification(int ratio) {
+        try {
+            log.info("TEST - testObjectsEdgeIdentification with ratio=" + ratio);
+            log.info("---------------------------------------");
+            ImageAPI imageAPI = new ImageAPI();
+            Mat image = Image.readImage(THIRD_IMAGE_NAME);
+            log.info("Image read successfully");
+            Mat result = ImageSegmentation.objectsEdgeIdentification(image, ratio);
+            Image.writeImage("lab_6_ratio_" + ratio + "_result.png", result);
+        } catch (IOException e){
+            log.error("IOException thrown: {}", e.getMessage());
         } catch (Exception e) {
             log.error("Exception thrown: {}", e.getMessage());
         }
