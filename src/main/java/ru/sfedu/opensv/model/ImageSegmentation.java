@@ -113,8 +113,6 @@ public class ImageSegmentation {
             approxContour2f.convertTo(approxContour, CvType.CV_32S);
             Rect rect = Imgproc.boundingRect(approxContour);
 
-//            log.info("height - {}, width - {}",rect.height, rect.width);
-
             if (rect.height != height || rect.width != width) {
                 continue;
             }
@@ -132,5 +130,17 @@ public class ImageSegmentation {
         }
         Imgproc.drawContours(srcImage, rectanglesContours, -1, new Scalar(0, 255, 0), 3);
         return rectanglesCount;
+    }
+
+    public static Mat objectsEdgeIdentification(Mat srcImage, int ratio)
+    {
+        Mat grayImage = new Mat();
+        Imgproc.cvtColor(srcImage, grayImage, Imgproc.COLOR_BGR2GRAY);
+        Mat detectedEdges = new Mat();
+        Imgproc.blur(grayImage, detectedEdges, new Size(3, 3));
+        Mat thresholdImage = new Mat();
+        double threshold = Imgproc.threshold(grayImage, thresholdImage, 0, 255, Imgproc.THRESH_OTSU);
+        Imgproc.Canny(detectedEdges, detectedEdges, threshold, threshold * ratio);
+        return  detectedEdges;
     }
 }
